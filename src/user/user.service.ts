@@ -22,4 +22,8 @@ export class UserService {
     await user.hashPassword();
     return this.userRepository.save(user);
   }
+
+  async findOne(email: string): Promise<User> {
+    return this.userRepository.findOne({ where: { email } });
+  }
 }

@@ -18,4 +18,8 @@ export class User {
   async hashPassword(): Promise<void> {
     this.password = await bcrypt.hash(this.password, 10);
   }
+
+  async comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+  }
 }
