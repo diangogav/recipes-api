@@ -32,7 +32,7 @@ export class CategoryResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => CategoryType)
+  @Mutation(() => Boolean)
   updateCategory(
     @Args('updateCategoryInput') updateCategoryInput: UpdateCategoryInput,
   ) {

@@ -40,7 +40,7 @@ export class CategoryService {
       { ...updateCategoryInput },
     );
     if (!affected) throw new NotFoundException('CATEGORY_NOT_FOUND');
-    return this.categoryRepository.create(updateCategoryInput);
+    return true;
   }
 
   async delete(id: string) {
