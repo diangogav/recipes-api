@@ -41,6 +41,7 @@ console.log('process.env.DATABASE_HOST', process.env.DATABASE_HOST);
         };
         return graphQLFormattedError;
       },
+      playground: true,
     }),
     UserModule,
     AuthModule,
