@@ -28,4 +28,4 @@ services:
 
 volumes:
   postgres:
-    name: nest-recipes-docker-db
+    name: nest-recipes-db-docker

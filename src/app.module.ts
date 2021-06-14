@@ -13,6 +13,10 @@ import { GraphQLError, GraphQLFormattedError } from 'graphql';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
+      ssl: true,
+      extra: {
+        ssl: { rejectUnauthorized: false },
+      },
       type: 'postgres',
       host: process.env.DATABASE_HOST,
       port: Number(process.env.DATABASE_PORT),
