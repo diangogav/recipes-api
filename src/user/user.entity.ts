@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { Recipe } from '../recipe/recipe.entity';
 
 @Entity('user')
 export class User {
@@ -14,6 +15,9 @@ export class User {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Recipe, (recipe) => recipe.user)
+  recipes: Recipe[];
 
   async hashPassword(): Promise<void> {
     this.password = await bcrypt.hash(this.password, 10);

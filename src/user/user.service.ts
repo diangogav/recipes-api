@@ -2,7 +2,8 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-import { CreateUserInput } from './create-user-input.dto';
+import { CreateUserInput } from './dto/create-user-input.dto';
+import { UserFilter } from './dto/user-filter';
 
 @Injectable()
 export class UserService {
@@ -23,7 +24,10 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  async findOne(email: string): Promise<User> {
-    return this.userRepository.findOne({ where: { email } });
+  async findOne(userFilter: UserFilter): Promise<User> {
+    const filter = {
+      ...(userFilter.where && { where: userFilter.where }),
+    };
+    return this.userRepository.findOne(filter);
   }
 }
