@@ -1,3 +1,14 @@
+<p align="center">
+
+  <p align="center">
+    <br />
+    <br />
+    <br />
+    <a href="https://recipes-api-abc.herokuapp.com/">View Demo</a>
+    ·
+    <a href="https://recipes-api-abc.herokuapp.com/graphql">Playground</a>
+    ·
+</p>
 <br />
 <p align="center">
   <h3 align="center">Recipes API</h3>
@@ -60,7 +71,8 @@ This is an example of how to list things you need to use the software and how to
   ``` -->
 
 ### Prerequisites
-1. Install  and npm
+
+1. Install and npm
 
 2. Install postgres database
 
@@ -84,7 +96,9 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 ### Docker
+
 Also, you can use docker for running the project with the database:
+
 ```sh
 docker-compose up -d
 ```
