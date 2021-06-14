@@ -43,11 +43,13 @@ export class RecipeResolver {
     return this.recipeService.findAll({ where: { userId: user.id } });
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => RecipeType)
   createRecipe(
+    @CurrentUserFromJWT() user: User,
     @Args('createRecipeInput') createRecipeInput: CreateRecipeInput,
   ) {
-    return this.recipeService.create(createRecipeInput);
+    return this.recipeService.create(user.id, createRecipeInput);
   }
 
   @Mutation(() => RecipeType)

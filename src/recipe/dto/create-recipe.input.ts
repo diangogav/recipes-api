@@ -18,8 +18,4 @@ export class CreateRecipeInput {
   @IsUUID('4')
   @Field()
   categoryId: string;
-
-  @IsUUID('4')
-  @Field()
-  userId: string;
 }

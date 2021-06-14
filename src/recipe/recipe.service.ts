@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Recipe } from './recipe.entity';
 import { CreateRecipeInput } from './dto/create-recipe.input';
 import { CategoryService } from '../category/category.service';
@@ -18,8 +18,14 @@ export class RecipeService {
     private userService: UserService,
   ) {}
 
-  async create(createRecipeInput: CreateRecipeInput): Promise<Recipe> {
-    const recipe = this.recipeRepository.create(createRecipeInput);
+  async create(
+    userId: string,
+    createRecipeInput: CreateRecipeInput,
+  ): Promise<Recipe> {
+    const recipe = this.recipeRepository.create({
+      ...createRecipeInput,
+      userId,
+    });
     return this.recipeRepository.save(recipe);
   }
 
@@ -28,10 +34,7 @@ export class RecipeService {
       ...(recipeFilter.where && { where: recipeFilter.where }),
     };
 
-    // return this.recipeRepository.find(JSON.parse(JSON.stringify(filter)));
-    return this.recipeRepository.find({
-      where: { ingredients: In(['Agua']) },
-    });
+    return this.recipeRepository.find(JSON.parse(JSON.stringify(filter)));
   }
 
   async findOne(id: string): Promise<Recipe> {
