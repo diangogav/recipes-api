@@ -25,8 +25,8 @@ export class RecipeResolver {
 
   @UseGuards(GqlAuthGuard)
   @Query(() => RecipeType)
-  getOneRecipe(@Args('id') id: string) {
-    return this.recipeService.findOne(id);
+  getOneRecipe(@Args('recipeFilter') recipeFilter: RecipeFilter) {
+    return this.recipeService.findOne(recipeFilter);
   }
 
   @UseGuards(GqlAuthGuard)

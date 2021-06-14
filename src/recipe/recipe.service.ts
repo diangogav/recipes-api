@@ -37,14 +37,22 @@ export class RecipeService {
     return this.recipeRepository.find(JSON.parse(JSON.stringify(filter)));
   }
 
-  async findOne(id: string): Promise<Recipe> {
-    const recipe = await this.recipeRepository.findOne(id);
+  async findOne(recipeFilter: RecipeFilter): Promise<Recipe> {
+    const filter = {
+      ...(recipeFilter?.where && { where: recipeFilter.where }),
+    };
+
+    const recipe = await this.recipeRepository.findOne(
+      JSON.parse(JSON.stringify(filter)),
+    );
     if (!recipe) throw new NotFoundException('RECIPE_NOT_FOUND');
     return recipe;
   }
 
   async getCategory(categoryId: string): Promise<Category> {
-    const category = await this.categoryService.findOne(categoryId);
+    const category = await this.categoryService.findOne({
+      where: { id: categoryId },
+    });
     if (!category) throw new NotFoundException('RECIPE_NOT_FOUND');
     return category;
   }

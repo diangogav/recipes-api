@@ -5,6 +5,7 @@ import { CategoryService } from './category.service';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { GqlAuthGuard } from 'src/auth/guards/gql-jwt-auth-guard';
 import { UseGuards } from '@nestjs/common';
+import { CategoryFilter } from './dto/category-filter.input';
 
 @Resolver()
 export class CategoryResolver {
@@ -12,8 +13,8 @@ export class CategoryResolver {
 
   @UseGuards(GqlAuthGuard)
   @Query(() => CategoryType)
-  getOneCategory(@Args('id') id: string) {
-    return this.categoryService.findOne(id);
+  getOneCategory(@Args('categoryFilter') categoryFilter: CategoryFilter) {
+    return this.categoryService.findOne(categoryFilter);
   }
 
   @UseGuards(GqlAuthGuard)
