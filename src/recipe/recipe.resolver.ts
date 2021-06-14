@@ -53,7 +53,7 @@ export class RecipeResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => RecipeType)
+  @Mutation(() => Boolean)
   updateRecipe(
     @Args('updateRecipeInput') updateRecipeInput?: UpdateRecipeInput,
   ) {

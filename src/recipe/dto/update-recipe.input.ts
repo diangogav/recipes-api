@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsUUID, MinLength } from 'class-validator';
+import { IsUUID, MinLength, ValidateIf } from 'class-validator';
 
 @InputType()
 export class UpdateRecipeInput {
@@ -7,14 +7,17 @@ export class UpdateRecipeInput {
   @Field()
   id: string;
 
+  @ValidateIf((field) => field.hasOwnProperty('name'))
   @MinLength(1)
   @Field({ nullable: true })
   name: string;
 
-  @MinLength(1)
+  @ValidateIf((field) => field.hasOwnProperty('description'))
   @Field({ nullable: true })
+  @MinLength(1)
   description?: string;
 
+  @ValidateIf((field) => field.hasOwnProperty('ingredients'))
   @MinLength(1, { each: true })
   @Field(() => [String], { nullable: true })
   ingredients?: string[];

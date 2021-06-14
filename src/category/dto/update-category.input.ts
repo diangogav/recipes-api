@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsUUID, MinLength } from 'class-validator';
+import { IsUUID, MinLength, ValidateIf } from 'class-validator';
 
 @InputType()
 export class UpdateCategoryInput {
@@ -7,6 +7,7 @@ export class UpdateCategoryInput {
   @Field()
   id: string;
 
+  @ValidateIf((field) => field.hasOwnProperty('name'))
   @MinLength(1)
   @Field()
   name: string;

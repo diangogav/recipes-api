@@ -71,7 +71,7 @@ export class RecipeService {
 
     if (!affected) throw new NotFoundException('RECIPE_NOT_FOUND');
 
-    return this.recipeRepository.create(updateRecipeInput);
+    return true;
   }
 
   async delete(id: string) {
