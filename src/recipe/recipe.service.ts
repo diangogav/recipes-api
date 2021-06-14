@@ -31,7 +31,7 @@ export class RecipeService {
 
   async findAll(recipeFilter: RecipeFilter) {
     const filter = {
-      ...(recipeFilter.where && { where: recipeFilter.where }),
+      ...(recipeFilter?.where && { where: recipeFilter.where }),
     };
 
     return this.recipeRepository.find(JSON.parse(JSON.stringify(filter)));
