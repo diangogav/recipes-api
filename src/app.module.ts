@@ -10,6 +10,8 @@ import { Category } from './category/category.entity';
 import { Recipe } from './recipe/recipe.entity';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
+console.log('process.env.DATABASE_HOST', process.env.DATABASE_HOST);
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
