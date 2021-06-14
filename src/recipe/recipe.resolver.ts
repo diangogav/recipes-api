@@ -52,6 +52,7 @@ export class RecipeResolver {
     return this.recipeService.create(user.id, createRecipeInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => RecipeType)
   updateRecipe(
     @Args('updateRecipeInput') updateRecipeInput?: UpdateRecipeInput,
@@ -59,6 +60,7 @@ export class RecipeResolver {
     return this.recipeService.update(updateRecipeInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => String)
   deleteRecipe(@Args('id') id: string) {
     return this.recipeService.delete(id);

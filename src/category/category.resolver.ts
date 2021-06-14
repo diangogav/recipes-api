@@ -22,6 +22,7 @@ export class CategoryResolver {
     return this.categoryService.getAll();
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => CategoryType)
   createCategory(
     @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
@@ -29,6 +30,7 @@ export class CategoryResolver {
     return this.categoryService.create(createCategoryInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => CategoryType)
   updateCategory(
     @Args('updateCategoryInput') updateCategoryInput: UpdateCategoryInput,
@@ -36,6 +38,7 @@ export class CategoryResolver {
     return this.categoryService.update(updateCategoryInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Boolean)
   deleteCategory(@Args('id') id: string) {
     return this.categoryService.delete(id);
