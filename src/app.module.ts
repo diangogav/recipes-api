@@ -8,6 +8,7 @@ import { CategoryModule } from './category/category.module';
 import { RecipeModule } from './recipe/recipe.module';
 import { Category } from './category/category.entity';
 import { Recipe } from './recipe/recipe.entity';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 @Module({
   imports: [
@@ -24,6 +25,13 @@ import { Recipe } from './recipe/recipe.entity';
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
+      formatError: (error: GraphQLError) => {
+        const graphQLFormattedError: GraphQLFormattedError = {
+          message:
+            error.extensions?.exception?.response?.message || error.message,
+        };
+        return graphQLFormattedError;
+      },
     }),
     UserModule,
     AuthModule,

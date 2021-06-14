@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Recipe } from './recipe.entity';
 import { CreateRecipeInput } from './dto/create-recipe.input';
 import { CategoryService } from '../category/category.service';
@@ -28,21 +28,28 @@ export class RecipeService {
       ...(recipeFilter.where && { where: recipeFilter.where }),
     };
 
-    return this.recipeRepository.find(JSON.parse(JSON.stringify(filter)));
+    // return this.recipeRepository.find(JSON.parse(JSON.stringify(filter)));
+    return this.recipeRepository.find({
+      where: { ingredients: In(['Agua']) },
+    });
   }
 
   async findOne(id: string): Promise<Recipe> {
     const recipe = await this.recipeRepository.findOne(id);
-    if (!recipe) throw new NotFoundException('Recipe_Not_Found');
+    if (!recipe) throw new NotFoundException('RECIPE_NOT_FOUND');
     return recipe;
   }
 
   async getCategory(categoryId: string): Promise<Category> {
-    return this.categoryService.findOne(categoryId);
+    const category = await this.categoryService.findOne(categoryId);
+    if (!category) throw new NotFoundException('RECIPE_NOT_FOUND');
+    return category;
   }
 
   async getUser(userId: string): Promise<User> {
-    return this.userService.findOne({ where: { id: userId } });
+    const user = await this.userService.findOne({ where: { id: userId } });
+    if (!user) throw new NotFoundException('USER_NOT_FOUND');
+    return user;
   }
 
   async update(updateRecipeInput: UpdateRecipeInput) {
@@ -51,7 +58,7 @@ export class RecipeService {
       { ...updateRecipeInput },
     );
 
-    if (!affected) throw new NotFoundException('Category_Not_Found');
+    if (!affected) throw new NotFoundException('RECIPE_NOT_FOUND');
 
     return this.recipeRepository.create(updateRecipeInput);
   }

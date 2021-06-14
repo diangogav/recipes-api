@@ -25,7 +25,7 @@ export class CategoryService {
     const category = await this.categoryRepository.findOne(id, {
       relations: ['recipes'],
     });
-    if (!category) throw new NotFoundException('Category_Not_Found');
+    if (!category) throw new NotFoundException('CATEGORY_NOT_FOUND');
     return category;
   }
 
@@ -34,15 +34,13 @@ export class CategoryService {
       { id: updateCategoryInput.id },
       { ...updateCategoryInput },
     );
-
-    if (!affected) throw new NotFoundException('Category_Not_Found');
-
+    if (!affected) throw new NotFoundException('CATEGORY_NOT_FOUND');
     return this.categoryRepository.create(updateCategoryInput);
   }
 
   async delete(id: string) {
     const category = await this.categoryRepository.findOne({ id });
-    if (!category) throw new NotFoundException('CATEGORY_NOT_FOUND');
+    if (!category) return false;
     await this.categoryRepository.remove(category);
     return true;
   }

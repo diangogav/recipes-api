@@ -1,7 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-@InputType()
 class Where {
   @Field({ nullable: true })
   name?: string;
