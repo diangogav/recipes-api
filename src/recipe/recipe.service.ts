@@ -77,6 +77,6 @@ export class RecipeService {
   async delete(id: string) {
     const { affected } = await this.recipeRepository.delete(id);
     if (!affected) throw new NotFoundException('RECIPE_NOT_FOUND');
-    return id;
+    return true;
   }
 }

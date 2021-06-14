@@ -61,7 +61,7 @@ export class RecipeResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => String)
+  @Mutation(() => Boolean)
   deleteRecipe(@Args('id') id: string) {
     return this.recipeService.delete(id);
   }
