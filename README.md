@@ -25,6 +25,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Docker</a></li>
       </ul>
     </li>
 
@@ -63,6 +64,8 @@ This is an example of how to list things you need to use the software and how to
 
 2. Install postgres database
 
+3. Optional: Docker and Docker Compose
+
 ### Installation
 
 1. Clone the repo
@@ -79,3 +82,9 @@ This is an example of how to list things you need to use the software and how to
    ```
    npm run start:dev
    ```
+
+### Docker
+Also, you can use docker for running the project with the database:
+```sh
+docker-compose up -d
+```
