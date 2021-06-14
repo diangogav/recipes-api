@@ -9,6 +9,8 @@ import { RecipeModule } from './recipe/recipe.module';
 import { Category } from './category/category.entity';
 import { Recipe } from './recipe/recipe.entity';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 console.log('process.env.DATABASE_HOST', process.env.DATABASE_HOST);
 
@@ -42,13 +44,14 @@ console.log('process.env.DATABASE_HOST', process.env.DATABASE_HOST);
         return graphQLFormattedError;
       },
       playground: true,
+      introspection: true,
     }),
     UserModule,
     AuthModule,
     CategoryModule,
     RecipeModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
