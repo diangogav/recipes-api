@@ -4,14 +4,14 @@
     <br />
     <br />
     <br />
-    <a href="https://recipes-api-abc.herokuapp.com/">View Demo</a>
+    <a href="https://recipes-api-abc.herokuapp.com/">🔥 View Demo</a>
     ·
-    <a href="https://recipes-api-abc.herokuapp.com/graphql">Playground</a>
+    <a href="https://recipes-api-abc.herokuapp.com/graphql">😱 Playground</a>
     ·
 </p>
 <br />
 <p align="center">
-  <h3 align="center">Recipes API</h3>
+  <h3 align="center">🍔🍔🍔 Recipes API 🍔🍔🍔</h3>
 
   <p align="center">
     An excellent API to manage your recipes
@@ -51,9 +51,9 @@ An excellent API to manage your recipes, which can be classified by categories.
 
 ### Built With
 
-- [NestJS]('https://docs.nestjs.com/')
-- [Graphql]('https://graphql.org/')
-- [TypeORM]('https://typeorm.io/')
+- 🍔 [NestJS]('https://docs.nestjs.com/')
+- 🍲 [Graphql]('https://graphql.org/')
+- 🥘 [TypeORM]('https://typeorm.io/')
 
 <!-- GETTING STARTED -->
 
@@ -72,11 +72,11 @@ This is an example of how to list things you need to use the software and how to
 
 ### Prerequisites
 
-1. Install and npm
+1. 🍔 Install and npm
 
-2. Install postgres database
+2. 🥘 Install postgres database
 
-3. Optional: Docker and Docker Compose
+3. 🥫 Optional: Docker and Docker Compose if you want skip database instalation and running the project with docker. Command in last part
 
 ### Installation
 
@@ -95,7 +95,7 @@ This is an example of how to list things you need to use the software and how to
    npm run start:dev
    ```
 
-### Docker
+### 🔥🔥🔥🔥 Docker 🔥🔥🔥🔥
 
 Also, you can use docker for running the project with the database:
 
