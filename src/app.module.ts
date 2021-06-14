@@ -10,18 +10,16 @@ import { Category } from './category/category.entity';
 import { Recipe } from './recipe/recipe.entity';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
-console.log(process.env.DATABASE_HOST);
-console.log(Number(process.env.DATABASE_POR));
-console.log(process.env.DATABASE_USER);
-console.log(process.env.DATABASE_PASSWORD);
-console.log(process.env.DATABASE_NAME);
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      // ssl: true,
-      // extra: {
-      //   ssl: { rejectUnauthorized: false },
-      // },
+      ssl: process.env.NODE_ENV === 'production',
+      extra: {
+        ssl:
+          process.env.NODE_ENV === 'production'
+            ? { rejectUnauthorized: false }
+            : null,
+      },
       type: 'postgres',
       host: process.env.DATABASE_HOST,
       port: Number(process.env.DATABASE_PORT),
