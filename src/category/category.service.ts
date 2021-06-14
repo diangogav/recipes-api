@@ -18,7 +18,7 @@ export class CategoryService {
   }
 
   async getAll() {
-    return this.categoryRepository.find();
+    return this.categoryRepository.find({ relations: ['recipes'] });
   }
 
   async findOne(id: string) {
