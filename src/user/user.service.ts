@@ -21,7 +21,7 @@ export class UserService {
 
     const user = this.userRepository.create(createUserInput);
     await user.hashPassword();
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
   }
 
   async findOne(userFilter: UserFilter): Promise<User> {
