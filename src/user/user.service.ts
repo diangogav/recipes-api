@@ -28,6 +28,6 @@ export class UserService {
     const filter = {
       ...(userFilter.where && { where: userFilter.where }),
     };
-    return this.userRepository.findOne(filter);
+    return await this.userRepository.findOne(filter);
   }
 }
